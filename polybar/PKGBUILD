@@ -1,42 +1,37 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 pkgname=polybar
 pkgver=3.6.3
-pkgrel=1
+pkgrel=2
 pkgdesc='A fast and easy to use tool for creating status bars'
 arch=('amd64')
 depends=(libuv1-dev libxcb-xrm-dev libcairo2-dev libxcb1-dev libxcb-util0-dev
     libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto
     libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev
     )
-makedepends=(build-essential git cmake cmake-data gcc pkg-config python3
-             python3-sphinx python3-packaging)
+makedepends=(build-essential git cmake gcc pkg-config python3
+             python3-sphinx python3-packaging ninja-build i3-wm)
 license=(MIT)
 url='https://github.com/polybar/polybar'
-source=("https://github.com/polybar/polybar/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=("0387c1cb2704bf37ecac53dde957c7287c78176095f75a51c1a65e555c5b1e3c")
-
-prepare() {
-    cd "${pkgname}-${pkgver}/"
-    [[ -d lib/xpp/.git ]] || git clone https://github.com/polybar/xpp lib/xpp/
-    [[ -d lib/i3ipcpp/.git ]] || git clone https://github.com/polybar/i3ipcpp lib/i3ipcpp/
-}
+source=("https://github.com/polybar/polybar/releases/download/${pkgver}/polybar-${pkgver}.tar.gz")
+sha256sums=("f25758573567208fc7b6f4d4115a6117a87389cbcc094cf605d079775be95fa5")
 
 build() {
-    cd "${pkgname}-${pkgver}/"
-    ./build.sh \
-      --gcc \
-      --i3 \
-      --ipc \
-      --pulseaudio \
-      --network \
-      --curl \
-      -f \
-      --no-install \
-      --auto
+  cd "${pkgname}-${pkgver}/"
+  ./build.sh \
+    --gcc \
+    --i3 \
+    --ipc \
+    --pulseaudio \
+    --network \
+    --curl \
+    -f \
+    --no-install \
+    --auto \
+    -j $(nproc)
 }
 
 package() {
-    cd "${pkgname}-${pkgver}/"
-    install -Dm755 build/bin/polybar "${pkgdir}/usr/bin/polybar"
-    install -Dm755 build/bin/polybar-msg "${pkgdir}/usr/bin/polybar-msg"
+  cd "${pkgname}-${pkgver}/"
+  install -Dm755 build/bin/polybar "${pkgdir}/usr/bin/polybar"
+  install -Dm755 build/bin/polybar-msg "${pkgdir}/usr/bin/polybar-msg"
 }

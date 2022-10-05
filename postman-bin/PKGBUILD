@@ -1,7 +1,7 @@
 # Maintainer: Thesting
 pkgname=postman-bin
 _pkgname=postman
-pkgver=9.29.0
+pkgver=9.31.0
 pkgrel=1
 pkgdesc="Build, test, and document your APIs faster"
 provides=('postman')
@@ -15,7 +15,7 @@ source=(
 	"postman.desktop"
 )
 depends=(libxss1 libnss3 libgtk-3-dev)
-sha512sums=('dc108d08a693ee397e5b51f7b02c1a8d0d0deea93b7376367e7e9852ae6365aed9c8c2ed925ded339afff88e4ca85ce83692ad9b289a41093de449d6b51cbf11'
+sha512sums=('3fab7faf5b37af84a1c0495adf2fa3bd2db163ae27966d28817055d08cd2c58d06eb3197ae7d99be8b906b5f516498619baebec061890d0dc98cdbf5fe0380e6'
             'f43fb133256f2dfbb9fc35644e92ad2b4acd672fbc4a25e850ebfcee6a9f385e07d3285c3969f6c92351be3a5f90534cae5156dbe6f05346912467854666e39b')
 package() {
 	# Install files

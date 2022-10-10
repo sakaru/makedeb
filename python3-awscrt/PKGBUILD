@@ -13,7 +13,7 @@ build() {
 }
 
 package() {
-  sitepackages=$(python -c "import site; print(site.getsitepackages()[0])")
+  sitepackages=$(python3 -c "import site; print(site.getsitepackages()[0])")
   mkdir -p $pkgdir/"$sitepackages"
   cp -r $srcdir/awscrt/* $pkgdir/"$sitepackages"
 }

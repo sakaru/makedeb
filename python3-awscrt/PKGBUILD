@@ -6,14 +6,17 @@ pkgdesc="A common runtime for AWS Python projects"
 arch=(any)
 url="https://github.com/awslabs/aws-crt-python"
 license=(Apache 2.0)
-makedepends=("python3" "python3-pip")
+makedepends=("python3" "python3-pip" "cmake" "git")
+source=("git+https://github.com/awslabs/aws-crt-python")
+sha256sums=("SKIP")
 
 build() {
-  pip install --no-deps --target="awscrt" awscrt==$pkgver
+  cd aws-crt-python
+  git checkout "v${pkgver}"
+  git submodule update --init
+  python3 setup.py install --root="$srcdir" --optimize=1 --install-layout=deb
 }
 
 package() {
-  sitepackages=$(python3 -c "import site; print(site.getsitepackages()[0])")
-  mkdir -p $pkgdir/"$sitepackages"
-  cp -r $srcdir/awscrt/* $pkgdir/"$sitepackages"
+  cp -r "${srcdir}/usr" "${pkgdir}"
 }

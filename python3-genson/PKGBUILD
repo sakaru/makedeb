@@ -9,11 +9,11 @@ url="https://github.com/wolverdude/$_name"
 depends=(python3)
 makedepends=(python3-setuptools)
 license=(MIT)
-url='https://github.com/polybar/polybar'
+url='https://github.com/wolverdude/genson/'
 source=("https://files.pythonhosted.org/packages/source/${_name::1}/${_name//-/_}/${_name//-/_}-$pkgver.tar.gz")
 sha256sums=("8caf69aa10af7aee0e1a1351d1d06801f4696e005f06cedef438635384346a16")
 
 package() {
     cd "$srcdir/${_name//-/_}-$pkgver"
-    python3 setup.py install --root="$pkgdir" --optimize=1
+    python3 setup.py install --root="$pkgdir" --optimize=1 --install-layout=deb
 }

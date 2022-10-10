@@ -1,0 +1,37 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+pkgname=aws-vault
+pkgver=6.6.0
+pkgrel=1
+pkgdesc='Vault for securely storing and accessing AWS credentials in development environments'
+arch=('amd64')
+makedepends=('golang-go')
+license=(MIT)
+url='https://github.com/99designs/aws-vault'
+source=("${url}/archive/v${pkgver}/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('c9973d25047dc2487f413b86f91ccc4272b385fea3132e397c3a921baa01c885')
+
+build() {
+  cd "${pkgname}-${pkgver}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export GOFLAGS="-buildmode=pie -ldflags=-linkmode=external -trimpath -mod=readonly -modcacherw"
+  go build -v \
+    -ldflags "-linkmode=external -extldflags '${LDFLAGS}' -X main.Version=v${pkgver}" .
+}
+
+check() {
+  cd "${pkgname}-${pkgver}"
+  go test ./...
+}
+
+package() {
+  cd "${pkgname}-${pkgver}"
+  install -Dm 755 ${pkgname} -t "${pkgdir}/usr/bin"
+  install -Dm 644 README.md USAGE.md -t "${pkgdir}/usr/share/doc/${pkgname}"
+  install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -Dm 644 -p contrib/completions/bash/${pkgname}.bash "${pkgdir}/usr/share/bash-completion/completions/${pkgname}"
+  install -Dm 644 -p contrib/completions/zsh/${pkgname}.zsh "${pkgdir}/usr/share/zsh/site-functions/_${pkgname}"
+  install -Dm 644 -p contrib/completions/fish/${pkgname}.fish "${pkgdir}/usr/share/fish/vendor_completions.d/${pkgname}.fish"
+}

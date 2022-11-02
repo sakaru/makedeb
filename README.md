@@ -2,9 +2,10 @@
 
 ## Using the repository of pre-compiled packages
 ```bash
-wget -qO - https://karunaratne.net/sakaru-makedeb/pgp-key.public | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sakaru-makedeb.gpg > /dev/null
-echo 'deb https://karunaratne.net/sakaru-makedeb ./' > /etc/apt/sources.list.d/sakaru-makedeb.list
-sudo apt update
+name="sakaru-makedeb"
+wget -qO - https://karunaratne.net/sakaru-makedeb/pgp-key.public | gpg --dearmor | sudo tee "/etc/apt/trusted.gpg.d/$name.gpg" 1> /dev/null
+echo "deb https://karunaratne.net/sakaru-makedeb ./" | sudo tee /etc/apt/sources.list.d/$name.list
+(echo "92749694f84f3cb20bfe1d43ed83df4392e1e717a9af61d7bd6daee63845f16a /etc/apt/trusted.gpg.d/$name.gpg" | sha256sum -c) && sudo apt update
 ```
 
 Then test using something like `sudo apt install tfswitch`.

@@ -24,3 +24,10 @@ cd <package>
 makedeb
 sudo dpkg -i <deb file>
 ```
+
+## Rules
+- Don't make packages with the same name as packages in the default Ubuntu repositories
+- Prefer building packages from source
+- If downloading a pre-compiled package, name the package with the "-bin" suffix
+- If a first-party Ubuntu repository already exists, don't re-package it here without good reason
+- Don't change the default configurations unless required

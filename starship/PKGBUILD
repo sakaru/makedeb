@@ -1,0 +1,48 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgname=starship
+pkgdesc='The cross-shell prompt for astronauts'
+pkgver=1.11.0
+pkgrel=1
+arch=(amd64)
+url=https://starship.rs/
+license=(ISC)
+makedepends=(
+  cmake
+  git
+  rustc
+)
+checkdepends=(python3)
+source=(git+https://github.com/starship/starship.git#tag=v${pkgver})
+b2sums=('SKIP')
+
+prepare() {
+  cargo fetch \
+    --locked \
+    --target $CARCH-unknown-linux-gnu \
+    --manifest-path starship/Cargo.toml
+}
+
+build() {
+  export CARGO_TARGET_DIR=target
+  CFLAGS+=" -ffat-lto-objects"
+  cargo build \
+    --release \
+    --frozen \
+    --manifest-path starship/Cargo.toml
+}
+
+check() {
+  cargo test \
+    --frozen \
+    --manifest-path starship/Cargo.toml
+}
+
+package() {
+  install -Dm 755 target/release/starship -t "${pkgdir}"/usr/bin/
+  install -Dm 644 starship/LICENSE -t "${pkgdir}"/usr/share/licenses/starship/
+  install -dm 755 "${pkgdir}"/usr/share/{bash-completion/completions,fish/vendor_completions.d,zsh/site-functions}/
+  ./target/release/starship completions bash > "${pkgdir}"/usr/share/bash-completion/completions/starship
+  ./target/release/starship completions fish > "${pkgdir}"/usr/share/fish/vendor_completions.d/starship.fish
+  ./target/release/starship completions zsh > "${pkgdir}"/usr/share/zsh/site-functions/_starship
+}

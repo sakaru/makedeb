@@ -1,0 +1,38 @@
+# Maintainer: timescam <timescam at duck dot com>
+
+_pkgname=via
+pkgname=$_pkgname-bin
+pkgver=2.0.5
+pkgrel=1
+pkgdesc="binary distribution of electron builds for https://usevia.app/"
+arch=(any)
+url="https://caniuse$_pkgname.com/"
+provides=("${_pkgname}=${pkgver}")
+depends=("libgtk-3-dev"
+        "libnotify-dev"
+        "libnss3-dev"
+        "libxss-dev"
+        "libxtst-dev"
+        "xdg-utils" 
+        "at-spi2-core"
+        "libsecret-1-dev")
+optdepends=("libappindicator3-dev: recommended for app indicator")
+_filename=("${_pkgname}-${pkgver}-linux.deb")
+source=("https://github.com/the-$_pkgname/releases/releases/download/v${pkgver}/$_filename"
+        "92-viia.rules")
+
+sha256sums=("53d18ae4a0e44aef84e5e6a539b059eba6817cdcf6422341e6544250eb7670b9"
+            "4a063ab984aac666fd17a0e090c11bb081098ce89872b773ac678e8650ad98ee")
+
+build() {
+  mkdir -p "${srcdir}/output"
+  tar -xf "${srcdir}/data.tar.xz" -C "${srcdir}/output"
+}
+
+package() {
+  cp -r "${srcdir}/output/"* "${pkgdir}"
+  install -d "${pkgdir}"/usr/bin
+  mkdir -p "${pkgdir}/etc/udev/rules.d"
+  install -m 644 "${srcdir}/92-viia.rules" "${pkgdir}/etc/udev/rules.d/92-viia.rules"
+  ln -s /opt/VIA/via-nativia "${pkgdir}"/usr/bin/via
+}

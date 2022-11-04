@@ -4,7 +4,7 @@ _pkgname=via
 pkgname=$_pkgname-bin
 pkgver=2.0.5
 pkgrel=1
-pkgdesc="binary distribution of electron builds for https://usevia.app/"
+pkgdesc="Your keyboard's best friend. Binary distribution of electron builds for https://usevia.app/"
 arch=(any)
 url="https://caniuse$_pkgname.com/"
 provides=("${_pkgname}=${pkgver}")

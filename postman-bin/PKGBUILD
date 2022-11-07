@@ -16,7 +16,7 @@ source=(
 )
 depends=(libxss1 libnss3 libgtk-3-dev)
 sha512sums=('a39eee180bf275d52f9acc2d2f6c3026d82828a4125509ceb6d82a33fbeac2f7d5cbbeffdeab785d0d815e71ad84601a510e933fdeefef1418b8726b29ddabe4'
-            'ba8bd058450ebbdf67a05f62105360ca4bb5acf3ab36c8bc185f417519cc0cb813808b707eb99252b1376df4b6a651c699b20a458ec5af7fc11e755901c4fd54')
+            'c4028e52946e724f5acba4068d341eea51eb82688596898bfbcab227b22adc2390e9594b98ad58c6e8f9cb67572712d827aab8b029089ee39f531717f18bdf51')
 package() {
 	# Install files
 	install -dm755 "${pkgdir}/opt/"

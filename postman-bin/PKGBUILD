@@ -2,7 +2,7 @@
 pkgname=postman-bin
 _pkgname=postman
 pkgver=10.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Build, test, and document your APIs faster"
 provides=('postman')
 conflicts=('postman')
@@ -16,7 +16,7 @@ source=(
 )
 depends=(libxss1 libnss3 libgtk-3-dev)
 sha512sums=('a39eee180bf275d52f9acc2d2f6c3026d82828a4125509ceb6d82a33fbeac2f7d5cbbeffdeab785d0d815e71ad84601a510e933fdeefef1418b8726b29ddabe4'
-            'f43fb133256f2dfbb9fc35644e92ad2b4acd672fbc4a25e850ebfcee6a9f385e07d3285c3969f6c92351be3a5f90534cae5156dbe6f05346912467854666e39b')
+            'ba8bd058450ebbdf67a05f62105360ca4bb5acf3ab36c8bc185f417519cc0cb813808b707eb99252b1376df4b6a651c699b20a458ec5af7fc11e755901c4fd54')
 package() {
 	# Install files
 	install -dm755 "${pkgdir}/opt/"

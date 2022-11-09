@@ -1,0 +1,54 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgname=('protobuf4' 'python3-protobuf4')
+_pkgname="protobuf"
+pkgver=21.9
+pkgrel=1
+pkgdesc="Protocol Buffers - Google's data interchange format. Version 4.x"
+arch=('amd64')
+url='https://developers.google.com/protocol-buffers/'
+license=('BSD')
+makedepends=('python3-setuptools' 'cmake')
+source=(https://github.com/protocolbuffers/protobuf/archive/v$pkgver/$_pkgname-$pkgver.tar.gz)
+sha512sums=('6954b42d21921e630173b7848c056ab95635627d8eddec960f3db2ddda13eedde00520a9b350722e76e2998649eb8ebe10758e1db938b6a91e38ff3295b1b7c1')
+
+build() {
+  cmake -B build -S $_pkgname-$pkgver \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -Dprotobuf_BUILD_TESTS=OFF \
+    -Dprotobuf_BUILD_SHARED_LIBS=ON
+  cmake --build build
+
+  ln -rs build $_pkgname-$pkgver/src/.libs
+  cd $_pkgname-$pkgver/python
+  PROTOC="$srcdir"/build/protoc \
+  python3 setup.py build --cpp_implementation
+}
+
+package_protobuf4() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  cd $_pkgname-$pkgver
+  install -vDm 644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname"
+  install -vDm 644 editors/protobuf-mode.el \
+    -t "$pkgdir/usr/share/emacs/site-lisp/"
+  install -vDm 644 editors/proto.vim \
+    -t "${pkgdir}/usr/share/vim/vimfiles/syntax"
+}
+
+package_python3-protobuf4() {
+  pkgdesc='Python 3 bindings for Google Protocol Buffers. Version 4.x'
+  depends=('python3' 'python3-six' "protobuf4=$pkgver-$pkgrel")
+
+  local python_version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+  cd "$_pkgname-$pkgver"
+  (
+    cd python
+    PYTHONPATH="$PWD/build/lib.linux-x86_64-${python_version}:PYTHONPATH" \
+    python3 setup.py install --skip-build \
+                            --cpp_implementation \
+                            --optimize=1 \
+                            --root="$pkgdir"
+  )
+  install -vDm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+}

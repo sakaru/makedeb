@@ -1,0 +1,26 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgname=python3-paramiko_expect
+pkgver=0.3.4
+pkgrel=1
+pkgdesc='An expect-like extension for the Paramiko SSH library'
+url='https://github.com/fgimian/paramiko-expect'
+arch=('amd64')
+license=('BSD')
+depends=('python3')
+makedepends=('python3-setuptools')
+
+source=("https://files.pythonhosted.org/packages/df/64/2a889bef5eb722105b61def42168fee5f24ea4a1bd85c667493c170622c1/paramiko-expect-${pkgver}.tar.gz")
+sha256sums=('05e46f10e0a951525fee210430e60f9cfc4e124035e3698b0a2194b3b90cae87')
+
+build() {
+  cd "$srcdir/paramiko-expect-$pkgver"
+  python3 setup.py build
+}
+
+package() {
+  cd "paramiko-expect-$pkgver"
+  python3 setup.py install --root="$pkgdir" --optimize=1 --skip-build --install-layout=deb
+
+  install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE.rst
+}

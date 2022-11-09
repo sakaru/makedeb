@@ -1,0 +1,31 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgname=keeper-commander
+pkgver=16.8.1
+pkgrel=1
+pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
+arch=('any')
+url="https://github.com/Keeper-Security/Commander"
+license=('MIT')
+depends=('python3'
+         'python3-colorama'
+         'python3-pycryptodome'
+         'python3-requests'
+         'python3-tabulate'
+         'python3-prompt-toolkit'
+         'python3-asciitree'
+         'python3-pytest'
+         'python3-protobuf'
+         'python3-pyperclip'
+         'python3-socks'
+         'python3-pykeepass'
+         )
+source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+sha512sums=('ee7e554c9f663458c8a90948f658394fdc90f0d28c475fba89e7dd897b9f336a8a7985d8a66883ffd6060e8db0a4e262726846dd369878e29e5f0f4321de352d')
+
+package() {
+  cd "Commander-$pkgver"
+  python3 setup.py install --root="$pkgdir/" --optimize=1  --install-layout=deb
+  install -D -m644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+

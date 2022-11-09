@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc='An expect-like extension for the Paramiko SSH library'
 url='https://github.com/fgimian/paramiko-expect'
 arch=('amd64')
-license=('BSD')
+license=('MIT')
 depends=('python3')
 makedepends=('python3-setuptools')
 

@@ -1,0 +1,16 @@
+--- ./keepercommander/commands/recordv3.py.bak	2022-11-10 12:17:43.445680548 +0100
++++ ./keepercommander/commands/recordv3.py	2022-11-10 12:21:00.149922238 +0100
+@@ -1386,8 +1386,11 @@
+             txt = rec.password
+         if txt:
+             if kwargs['output'] == 'clipboard':
+-                import pyperclip
+-                pyperclip.copy(txt)
++                # import pyperclip
++                # pyperclip.copy(txt)
++                import subprocess
++                p1 = subprocess.Popen(['xclip', '-selection', 'clipboard', '-f'], stdin=subprocess.PIPE, stdout=subprocess.DEVNULL)
++                p1.communicate(input=(txt.encode()))
+                 logging.info(f'{copy_item} copied to clipboard')
+             else:
+                 print(txt)

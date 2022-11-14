@@ -1,0 +1,69 @@
+# Maintainer: Sid Karunaratne <sid@karunarane.net>
+
+pkgname=mani
+pkgver=0.22.0
+pkgrel=1
+pkgdesc='A CLI tool that helps you manage multiple repositories'
+arch=('amd64')
+url='https://manicli.com'
+license=('MIT')
+makedepends=('git' 'golang-go')
+source=("$pkgname::git+https://github.com/alajmo/mani.git#tag=v${pkgver}")
+b2sums=('SKIP')
+
+prepare() {
+  cd "$pkgname"
+
+  # create directory for build output
+  mkdir -p build
+
+  # download dependencies
+  go mod download
+}
+
+build() {
+  cd "$pkgname"
+
+  # set Go flags
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  local build_time="$(date -d@"$SOURCE_DATE_EPOCH" +%Y%m%d-%H:%M:%S)"
+  local _commit="$(git log -n 1 --pretty=format:'%H')"
+
+  # build
+  go build -v \
+    -trimpath \
+    -buildmode=pie \
+    -mod=readonly \
+    -modcacherw \
+    -ldflags "-linkmode external -extldflags ${LDFLAGS} \
+    -X github.com/alajmo/mani/cmd.version=$pkgver \
+    -X github.com/alajmo/mani/cmd.commit=$_commit \
+    -X github.com/alajmo/mani/cmd.date=$build_time" \
+    -o build \
+    .
+
+  # create shell completions
+  for shell in bash zsh fish; do
+    ./build/mani completion "$shell" > "build/completion.$shell"
+  done
+}
+
+package() {
+  cd "$pkgname"
+
+  # binary
+  install -vDm755 -t "$pkgdir/usr/bin" build/mani
+
+  # shell completions
+  install -vDm644 build/completion.bash "$pkgdir/usr/share/bash-completion/completions/$pkgname"
+  install -vDm644 build/completion.fish "$pkgdir/usr/share/fish/vendor_completions.d/$pkgname.fish"
+  install -vDm644 build/completion.zsh "$pkgdir/usr/share/zsh/site-functions/_$pkgname"
+
+  # documentation
+  install -vDm644 -t "$pkgdir/usr/share/doc/$pkgname" README.md
+
+  # license
+  install -vDm644 -t "$pkgdir/usr/share/licenses/$pkgname" LICENSE
+}

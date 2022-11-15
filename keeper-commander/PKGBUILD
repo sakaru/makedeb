@@ -2,7 +2,7 @@
 
 pkgname=keeper-commander
 pkgver=16.8.1
-pkgrel=2
+pkgrel=3
 pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
 arch=('any')
 url="https://github.com/Keeper-Security/Commander"
@@ -31,7 +31,7 @@ source=(
 )
 sha512sums=(
   'ee7e554c9f663458c8a90948f658394fdc90f0d28c475fba89e7dd897b9f336a8a7985d8a66883ffd6060e8db0a4e262726846dd369878e29e5f0f4321de352d'
-  '14a00ad84892114437a5adeab79dfbc421f78e5c47f81d4cc18543159963434728dbcd149ef4079ac0bd5b9dcfc2b3069af4f1c88b5476401a21322a9b2dd443'
+  'a26d3dd3eb6d77cb6c6c323de018ac1631dfc3e293f4234481498a2047f9e5e54e5132c00324482ae40fa2aa3f6aade4330de877ad64d529db12661cbbadfc67'
 )
 
 prepare() {

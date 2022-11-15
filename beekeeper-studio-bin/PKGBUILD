@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunarane.net>
 
 pkgname='beekeeper-studio-bin'
-pkgver=3.6.2
+pkgver=3.7.4
 pkgrel=1
 pkgdesc='Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more'
 arch=('amd64')
@@ -20,7 +20,7 @@ depends=('libgtk-3-0'
 source=("beekeeper-studio-${pkgver}-license::https://github.com/beekeeper-studio/beekeeper-studio/raw/v${pkgver}/LICENSE.md"
         "https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v${pkgver}/beekeeper-studio_${pkgver}_amd64.deb")
 sha256sums=('1409fbbc5265c85da91684660c87f85d74c3fdc63a2d355169f40dac5cc7a078'
-            '5bfb1c97956695e0f737f60f43acadee328daec15104e2a96f60d4ba90351395')
+            '63f68aab6f03a3816bd308f1684931bdb907dd390ae35f7f194179c3882d081e')
 
 package() {
   tar -xvf 'data.tar.xz' -C "${pkgdir}"

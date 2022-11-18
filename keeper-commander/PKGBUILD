@@ -1,8 +1,8 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname=keeper-commander
-pkgver=16.8.1
-pkgrel=3
+pkgver=16.8.2
+pkgrel=1
 pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
 arch=('any')
 url="https://github.com/Keeper-Security/Commander"
@@ -25,14 +25,10 @@ depends=('python3'
          'python3-tabulate'
          'xclip'
          )
-source=(
-  "$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz"
-  "xclip.patch"
-)
-sha512sums=(
-  'ee7e554c9f663458c8a90948f658394fdc90f0d28c475fba89e7dd897b9f336a8a7985d8a66883ffd6060e8db0a4e262726846dd369878e29e5f0f4321de352d'
-  'a26d3dd3eb6d77cb6c6c323de018ac1631dfc3e293f4234481498a2047f9e5e54e5132c00324482ae40fa2aa3f6aade4330de877ad64d529db12661cbbadfc67'
-)
+source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz"
+        "xclip.patch")
+sha512sums=('fa89eca7502c3b56f501854cf416896f365a2f26cb70a757ec6d76727cc9d215c8a7050b377078023edf45b572223e8a4a7968652c6dd45e20df6304fdcb981a'
+            'a26d3dd3eb6d77cb6c6c323de018ac1631dfc3e293f4234481498a2047f9e5e54e5132c00324482ae40fa2aa3f6aade4330de877ad64d529db12661cbbadfc67')
 
 prepare() {
   cd "Commander-$pkgver"

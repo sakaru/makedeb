@@ -1,5 +1,5 @@
---- keepercommander/loginv3.py.old	2022-11-15 22:10:13.056075390 +0100
-+++ keepercommander/loginv3.py	2022-11-15 22:10:03.704030237 +0100
+--- keepercommander/loginv3.py.old	2022-12-03 16:14:19.974037109 +0100
++++ keepercommander/loginv3.py	2022-12-03 16:15:36.233527320 +0100
 @@ -600,6 +600,7 @@
              if token == 'c':
                  token = None
@@ -8,18 +8,18 @@
                      pyperclip.copy(sp_url)
                      print('SSO Login URL is copied to clipboard.')
                  except:
---- keepercommander/commands/register.py.old	2022-11-15 22:10:39.336202636 +0100
-+++ keepercommander/commands/register.py	2022-11-15 22:10:35.232182730 +0100
-@@ -2045,6 +2045,7 @@
-         else:
-             if kwargs.get('output', '') == 'clipboard':
+--- keepercommander/commands/register.py.old	2022-12-03 16:14:36.285927873 +0100
++++ keepercommander/commands/register.py	2022-12-03 16:15:49.105441479 +0100
+@@ -2043,6 +2043,7 @@
+             output = kwargs.get('output') or ''
+             if output == 'clipboard':
                  import pyperclip
 +                pyperclip.set_clipboard('xclip')
                  pyperclip.copy(url)
                  logging.info('One-Time record share URL is copied to clipboard')
-             else:
---- keepercommander/commands/connect.py.old	2022-11-15 22:10:49.296250996 +0100
-+++ keepercommander/commands/connect.py	2022-11-15 22:10:46.024235102 +0100
+             elif output == 'stdout':
+--- keepercommander/commands/connect.py.old	2022-12-03 16:14:44.697871570 +0100
++++ keepercommander/commands/connect.py	2022-12-03 16:15:46.437459268 +0100
 @@ -333,6 +333,7 @@
                      self.command += ' -o PubkeyAuthentication=no'
                      try:
@@ -28,9 +28,9 @@
                          pyperclip.copy(password)
                          logging.info('\nPassword is copied to clipboard\n')
  
---- keepercommander/commands/recordv3.py.old	2022-11-15 22:11:01.936312473 +0100
-+++ keepercommander/commands/recordv3.py	2022-11-15 22:10:55.336280359 +0100
-@@ -1387,6 +1387,7 @@
+--- keepercommander/commands/record.py.old	2022-12-03 16:15:04.397739869 +0100
++++ keepercommander/commands/record.py	2022-12-03 16:15:26.885589696 +0100
+@@ -1241,6 +1241,7 @@
          if txt:
              if kwargs['output'] == 'clipboard':
                  import pyperclip
@@ -38,18 +38,8 @@
                  pyperclip.copy(txt)
                  logging.info(f'{copy_item} copied to clipboard')
              else:
---- keepercommander/commands/recordv2.py.old	2022-11-15 22:11:22.176411150 +0100
-+++ keepercommander/commands/recordv2.py	2022-11-15 22:11:19.372397463 +0100
-@@ -874,6 +874,7 @@
-         if txt:
-             if kwargs['output'] == 'clipboard':
-                 import pyperclip
-+                pyperclip.set_clipboard('xclip')
-                 pyperclip.copy(txt)
-                 logging.info('Copied to clipboard')
-             else:
---- keepercommander/commands/utils.py.old	2022-11-15 22:13:38.573082892 +0100
-+++ keepercommander/commands/utils.py	2022-11-15 22:13:36.201071119 +0100
+--- keepercommander/commands/utils.py.old	2022-12-03 16:14:54.561805608 +0100
++++ keepercommander/commands/utils.py	2022-12-03 16:15:42.677484341 +0100
 @@ -1941,6 +1941,7 @@
  
          if clipboard:

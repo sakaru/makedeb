@@ -2,7 +2,7 @@
 
 pkgname=('protobuf4' 'python3-protobuf4')
 _pkgname="protobuf"
-pkgver=21.9
+pkgver=21.10
 pkgrel=1
 pkgdesc="Protocol Buffers - Google's data interchange format. Version 4.x"
 arch=('amd64')
@@ -10,7 +10,7 @@ url='https://developers.google.com/protocol-buffers/'
 license=('BSD')
 makedepends=('python3-setuptools' 'cmake')
 source=(https://github.com/protocolbuffers/protobuf/archive/v$pkgver/$_pkgname-$pkgver.tar.gz)
-sha512sums=('6954b42d21921e630173b7848c056ab95635627d8eddec960f3db2ddda13eedde00520a9b350722e76e2998649eb8ebe10758e1db938b6a91e38ff3295b1b7c1')
+sha512sums=('83ab712c610da011d73fc5162f67163016ced3f242f4126e49e8ebb203b9d70fb9e7e6afff1ac05712ceca251aaa6e33f4ea656083161d0c458ba826508a42ea')
 
 build() {
   cmake -B build -S $_pkgname-$pkgver \

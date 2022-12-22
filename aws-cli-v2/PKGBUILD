@@ -2,7 +2,7 @@
 # Contributor: David Birks <david@birks.dev>
 
 pkgname='aws-cli-v2'
-pkgver='2.9.8'
+pkgver='2.9.9'
 pkgrel='1'
 
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
@@ -35,7 +35,7 @@ provides=('aws-cli')
 conflicts=('aws-cli' 'aws-cli-git' 'aws-cli-v2-bin')
 
 source=("$pkgname-$pkgver.tar.gz::https://github.com/aws/aws-cli/archive/$pkgver.tar.gz")
-sha256sums=('4a8aa1ec79a7c115a02213cb2e75160d24054106bb82b6e75ea0008df5810834')
+sha256sums=('9a93633233b0fba20d6917118e7f1928edadc69801388c48acdc1f6d521110c4')
 
 build() {
   cd aws-cli-$pkgver

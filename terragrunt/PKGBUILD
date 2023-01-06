@@ -1,6 +1,6 @@
 # Maintainer: Sid Karunaratne <sid.karunaratne@pix4d.com>
 pkgname=terragrunt
-pkgver=0.42.6
+pkgver=0.42.7
 pkgrel=1
 pkgdesc='Thin wrapper for Terraform that provides extra tools for working with multiple Terraform modules'
 url='https://github.com/gruntwork-io/terragrunt'
@@ -10,7 +10,7 @@ makedepends=('golang-go')
 optdepends=('terraform: terraform needed in $PATH, can be done with terraform/tfswitch/tfenv')
 license=('MIT')
 source=("${url}/archive/v${pkgver}/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('b59aaba96dc832229605eba107415550264b51611ba0d188d1e33340c6c1194f')
+sha256sums=('802a0cbbbd3b89d709befb154fa1141a6b3eaf8f5a45acd48b5c223bbc43e090')
 
 build() {
   cd ${pkgname}-${pkgver}

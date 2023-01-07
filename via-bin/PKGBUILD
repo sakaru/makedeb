@@ -2,7 +2,7 @@
 
 _pkgname=via
 pkgname=$_pkgname-bin
-pkgver=2.0.5
+pkgver=2.1.0
 pkgrel=1
 pkgdesc="Your keyboard's best friend. Binary distribution of electron builds for https://usevia.app/"
 arch=(any)
@@ -21,8 +21,8 @@ _filename=("${_pkgname}-${pkgver}-linux.deb")
 source=("https://github.com/the-$_pkgname/releases/releases/download/v${pkgver}/$_filename"
         "92-viia.rules")
 
-sha256sums=("53d18ae4a0e44aef84e5e6a539b059eba6817cdcf6422341e6544250eb7670b9"
-            "4a063ab984aac666fd17a0e090c11bb081098ce89872b773ac678e8650ad98ee")
+sha256sums=('c3d203f1cff81cea26ccfe9e5f755062b430b3dab1d65d30c33a1ac683779bed'
+            '4a063ab984aac666fd17a0e090c11bb081098ce89872b773ac678e8650ad98ee')
 
 build() {
   mkdir -p "${srcdir}/output"

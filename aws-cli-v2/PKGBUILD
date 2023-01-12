@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname='aws-cli-v2'
-pkgver='2.9.13'
+pkgver='2.9.14'
 pkgrel='1'
 
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
@@ -34,7 +34,7 @@ provides=('aws-cli')
 conflicts=('aws-cli' 'aws-cli-git' 'aws-cli-v2-bin')
 
 source=("$pkgname-$pkgver.tar.gz::https://github.com/aws/aws-cli/archive/$pkgver.tar.gz")
-sha256sums=('1a246328b38f0e95514f65b37fa9ee9c693aca557b97710a88ff252a0102dd51')
+sha256sums=('6d0a7d28e076c174f697b3ac34930e4201367bf6043b6f9dcc0a2d15b2b6ee9c')
 
 build() {
   cd aws-cli-$pkgver

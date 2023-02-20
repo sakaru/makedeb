@@ -2,7 +2,7 @@
 
 pkgname=keeper-commander
 pkgver=16.8.17
-pkgrel=1
+pkgrel=2
 pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
 arch=('any')
 url="https://github.com/Keeper-Security/Commander"
@@ -12,6 +12,9 @@ depends=('python3'
          'python3-bcrypt'
          'python3-colorama'
          'python3-cryptography'
+         'python3-iso8601'
+         'python3-keeper_secrets_manager_core'
+         'python3-keeper_secrets_manager_helper'
          'python3-paramiko'
          'python3-paramiko_expect'
          'python3-prompt-toolkit'
@@ -37,7 +40,7 @@ prepare() {
 
 package() {
   cd "Commander-$pkgver"
-  python3 setup.py install --root="$pkgdir/" --optimize=1  --install-layout=deb
+  python3 setup.py install --root="$pkgdir/" --optimize=1 --install-layout=deb
   install -D -m644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 

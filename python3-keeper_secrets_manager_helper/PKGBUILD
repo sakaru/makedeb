@@ -1,0 +1,17 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+_name=keeper-secrets-manager-helper
+pkgname=python3-keeper_secrets_manager_helper
+pkgver=1.0.4
+pkgrel=1
+pkgdesc="Detailed Python SDK docs for Keeper Secrets Manager"
+arch=(any)
+url="https://github.com/Keeper-Security/secrets-manager"
+license=(MIT)
+makedepends=("python3" "python3-pip" "git")
+source=("https://pypi.python.org/packages/source/${_name:0:1}/${_name}/${_name}-${pkgver}.tar.gz")
+sha256sums=("9d455fa1927e2f29a8cf1739f61a05dec9d846f067f43d9b8282277f314aaffa")
+
+package() {
+    cd "$srcdir/${_name}-$pkgver"
+    python3 setup.py install --root="$pkgdir" --optimize=1 --install-layout=deb
+}

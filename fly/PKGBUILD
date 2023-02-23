@@ -1,6 +1,6 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 pkgname=fly
-pkgver=7.8.1
+pkgver=7.9.1
 pkgrel=1
 pkgdesc='A command line interface for Concourse CI'
 arch=('amd64')
@@ -8,7 +8,8 @@ license=('Apache-2.0')
 url='https://github.com/concourse/concourse/tree/master/fly'
 source=("https://github.com/concourse/concourse/releases/download/v${pkgver}/fly-${pkgver}-linux-amd64.tgz"
         "https://github.com/concourse/concourse/releases/download/v${pkgver}/fly-${pkgver}-linux-amd64.tgz.sha1")
-sha1sums=("921a74711f67cc03172676c50364197166afb10e" "SKIP")
+b2sums=('639c2571f596caba286f707f288772639750e7abda37562581c4460e4001bd91adec67bbf825631ba27ddc161cf86dfd62c144d80c78d2cccf9e321f5389c76b'
+        'SKIP')
 
 package() {
   sha1sum -c "fly-${pkgver}-linux-amd64.tgz.sha1"

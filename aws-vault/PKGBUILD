@@ -1,6 +1,6 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 pkgname=aws-vault
-pkgver=7.1.0
+pkgver=7.1.1
 pkgrel=1
 pkgdesc='Vault for securely storing and accessing AWS credentials in development environments'
 arch=('amd64')
@@ -8,7 +8,7 @@ makedepends=('golang-go')
 license=(MIT)
 url='https://github.com/99designs/aws-vault'
 source=("${url}/archive/v${pkgver}/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('d02d170bf0b1ae1cedc35e843c1653b657c0f68297a38e6e4b833795edee9b9e')
+sha256sums=('dd56d8dc51afc61c3474496a381d8b422c1faadadf1f1b2477339239fcb7d507')
 
 build() {
   cd "${pkgname}-${pkgver}"

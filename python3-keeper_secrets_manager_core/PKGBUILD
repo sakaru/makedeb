@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 _name=keeper-secrets-manager-core
 pkgname=python3-keeper_secrets_manager_core
-pkgver=16.5.1
+pkgver=16.5.2
 pkgrel=1
 pkgdesc="Detailed Python SDK docs for Keeper Secrets Manager"
 arch=(any)
@@ -9,7 +9,7 @@ url="https://github.com/Keeper-Security/secrets-manager"
 license=(MIT)
 makedepends=("python3" "python3-pip" "git")
 source=("https://pypi.python.org/packages/source/${_name:0:1}/${_name}/${_name}-${pkgver}.tar.gz")
-sha256sums=("3d42b25589aa7670fac693dfdeded51186d5c43174f790a9f2bd4612264ea6c2")
+sha256sums=("b761fe16388e2b153d8a4b7848948a2ba32e5e398c8ea124ef796861fae2fc50")
 
 package() {
   cd "$srcdir/${_name}-$pkgver"

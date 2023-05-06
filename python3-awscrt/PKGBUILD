@@ -1,6 +1,6 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 pkgname=python3-awscrt
-pkgver=0.16.16
+pkgver=0.16.17
 pkgrel=1
 pkgdesc="A common runtime for AWS Python projects"
 arch=(any)

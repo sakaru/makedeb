@@ -1,0 +1,18 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+_name=zulip
+pkgname=python3-$_name
+pkgver=0.8.2
+pkgrel=1
+pkgdesc='Bindings for the Zulip message API'
+arch=(any)
+url="https://www.zulip.org/"
+depends=(python3)
+makedepends=(python3-setuptools python3-requests)
+license=(Apache 2.0)
+source=("https://files.pythonhosted.org/packages/source/${_name::1}/${_name//-/_}/${_name//-/_}-$pkgver.tar.gz")
+sha256sums=("7e3d5097feb22e912dda187cdabdebf5b2022cba95b32a43793e27abe9c52e6f")
+
+package() {
+    cd "$srcdir/${_name//-/_}-$pkgver"
+    python3 setup.py install --root="$pkgdir" --optimize=1 --install-layout=deb
+}

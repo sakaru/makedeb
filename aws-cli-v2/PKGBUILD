@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname=aws-cli-v2
-pkgver=2.11.24
+pkgver=2.11.25
 pkgrel=1
 
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
@@ -34,7 +34,7 @@ provides=('awscli')
 conflicts=('awscli')
 
 source=("https://awscli.amazonaws.com/awscli-$pkgver.tar.gz")
-sha256sums=('64561e34c7dbaba6ff093b897b5da4efcb821837d3426c6bc121fe9cadd2db76')
+sha256sums=('595bfb5585ef44e0ead20251cb045d68bb105195f1509bf0bd71524b9aab9e8d')
 
 build() {
   cd awscli-$pkgver

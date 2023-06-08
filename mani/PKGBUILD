@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunarane.net>
 
 pkgname=mani
-pkgver=0.24.0
+pkgver=0.25.0
 pkgrel=1
 pkgdesc='A CLI tool that helps you manage multiple repositories'
 arch=('amd64')

@@ -1,8 +1,8 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname=wezterm
-pkgver=20230408
-_gitbranch="${pkgver}-112425-69ae8472"
+pkgver=20230712
+_gitbranch="${pkgver}-072601-f4abf8fd"
 pkgrel=1
 pkgdesc="A terminal emulator with support for modern features such as fonts with ligatures, hyperlinks, tabs and multiple windows."
 arch=('amd64')

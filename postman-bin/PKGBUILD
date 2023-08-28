@@ -2,7 +2,7 @@
 
 pkgname=postman-bin
 _pkgname=postman
-pkgver=10.16.0
+pkgver=10.17.0
 pkgrel=1
 pkgdesc="Build, test, and document your APIs faster"
 provides=('postman')
@@ -16,7 +16,7 @@ source=(
 	"postman.desktop"
 )
 depends=(libxss1 libnss3 libgtk-3-dev)
-sha512sums=('103956bcc922fc500693ceaa4a39cde18976091fba8c41136445754085b5192465a502476077f77cf5c81359a5a720c2206e56fc02e7a12e01963a7fb2d01b1c'
+sha512sums=('db0b3dcdd24a21f5333d9842e0b21d135fd1e1a024490be5de7581bf1b00c0f7a550bad94fbbf4c099c154b3dcace4c2c560e42f0fb8515472285112997a9dd4'
             'c4028e52946e724f5acba4068d341eea51eb82688596898bfbcab227b22adc2390e9594b98ad58c6e8f9cb67572712d827aab8b029089ee39f531717f18bdf51')
 
 package() {

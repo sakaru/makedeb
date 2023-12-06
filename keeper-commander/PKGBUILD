@@ -2,12 +2,13 @@
 
 pkgname=keeper-commander
 pkgver=16.9.28
-pkgrel=1
+pkgrel=2
 pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
 arch=('any')
 url="https://github.com/Keeper-Security/Commander"
 license=('MIT')
 depends=('python3'
+         'python3-aiortc'
          'python3-asciitree'
          'python3-bcrypt'
          'python3-colorama'

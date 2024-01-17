@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname=keeper-commander
-pkgver=16.10.1
+pkgver=16.10.2
 pkgrel=1
 pkgdesc="CLI, SDK and interactive shell for Keeper® Password Manager."
 arch=('any')
@@ -32,7 +32,7 @@ depends=('python3'
          )
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz"
         "xclip.patch")
-sha512sums=('22f6005916f9a87bcea4e27432109685498efb177b649d8cefa9a2555d60301e7d522c099b22b8906321537e41e59b03503fd777a779418b06067e019c5e266b'
+sha512sums=('c03daa06d9e4588474330e73656246d2a2b4a72ccbcaff717cbe3223cde54c645137d0f8992ff6418f375b9cb19c1a801ccbda77fff635157a91a2f15775402e'
             '473734604e93b3a202b79bd65ffaa8677571b2bbab49479fdc9ab4ac592aacf3a92e431b79819b10bf3d360798b56e9ce35a239a7aa79d177d26bc5732178595')
 
 prepare() {

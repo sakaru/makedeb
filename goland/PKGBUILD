@@ -1,0 +1,32 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgbase=goland
+pkgname=(goland)
+pkgdesc='Capable and Ergonomic Go IDE'
+pkgver=2023.3.2
+pkgrel=1
+arch=('amd64')
+url='https://www.jetbrains.com/go/'
+license=('custom:jetbrains')
+depends=('libglib2.0-0')
+options=('!strip')
+source=("https://download.jetbrains.com/go/${pkgbase}-${pkgver}.tar.gz"
+        jetbrains-goland.desktop
+        LICENSE)
+b2sums=('aca74e4145bccfa81dddce2aeb4a351d547c3d3130793df9b3a81f9c4227bb8bc58ef5f06bd3b914d483b62262a0040f9f56f60092d5dbd533df698d859ca021'
+        '69a09c3ff4182cd5ae43c967b4a58ce3bdf428f0fb87f91f835ffcde5c10019cf4a789cfdb8966ad98c95dda47517a6c49e9c4bf6c217f0cb1b553100730a6a6'
+        'dadaf0e67b598aa7a7a4bf8644943a7ee8ebf4412abb17cd307f5989e36caf9d0db529a0e717a9df5d9537b10c4b13e814b955ada6f0d445913c812b63804e77')
+
+package() {
+  install -dm755 "${pkgdir}"/opt/
+  install -dm755 "${pkgdir}"/usr/bin/
+  install -dm755 "${pkgdir}"/usr/share/applications/
+  install -dm755 "${pkgdir}"/usr/share/pixmaps/
+
+  cp -a "${srcdir}"/GoLand-${pkgver}/ "${pkgdir}"/opt/${pkgbase}
+
+  ln -s /opt/${pkgbase}/bin/${pkgbase}.sh "${pkgdir}"/usr/bin/${pkgbase}
+  install -m644 "${srcdir}"/jetbrains-${pkgbase}.desktop "${pkgdir}"/usr/share/applications/
+  install -m644 "${pkgdir}"/opt/${pkgbase}/bin/${pkgbase}.svg "${pkgdir}"/usr/share/pixmaps/${pkgbase}.svg
+  install -Dm644 LICENSE "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE.txt
+}

@@ -1,0 +1,62 @@
+# Maintainer: Sid Karunaratne <sid@karunaratne.net>
+
+pkgname=task
+pkgver=3.34.0
+pkgrel=1
+pkgdesc='A task runner written in Go'
+arch=('amd64')
+url='https://taskfile.dev'
+license=('MIT')
+depends=('libc6-dev')
+# makedepends=('golang-go')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/go-task/task/archive/refs/tags/v${pkgver}.tar.gz")
+b2sums=('bcc2364abdb85d4c75732a76c317830640bc47aa46cce420d5c3be8087f1db049b7de282f5227b3916936970b3bad1b373a6286ae292ad88a857ab4bfe5d90be')
+
+prepare() {
+  cd "$srcdir/$pkgname-$pkgver"
+  # download dependencies
+  export GOPATH="${srcdir}"
+  go mod download
+}
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  # set Go flags
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export GOPATH="${srcdir}"
+
+  go build -v \
+    -buildmode=pie \
+    -mod=readonly \
+    -modcacherw \
+    -ldflags "-compressdwarf=false \
+    -linkmode external \
+    -extldflags ${LDFLAGS} \
+    -X github.com/go-task/task/v3/internal/version.version=${pkgver}" \
+    -o task \
+    ./cmd/task
+}
+
+check() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  go test -v ./...
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  # binary
+  install -vDm755 -t "$pkgdir/usr/bin" task
+
+  # shell completions
+  install -vDm644 completion/bash/task.bash "$pkgdir/usr/share/bash-completion/completions/task"
+  install -vDm644 completion/fish/task.fish "$pkgdir/usr/share/fish/vendor_completions.d/task.fish"
+  install -vDm644 completion/zsh/_task "$pkgdir/usr/share/zsh/site-functions/_task"
+
+  # license
+  install -vDm644 -t "$pkgdir/usr/share/licenses/$pkgname" LICENSE
+}

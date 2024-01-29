@@ -1,7 +1,7 @@
 # Maintainer: Sid Karunaratne <sid@karunaratne.net>
 
 pkgname=task
-pkgver=3.34.0
+pkgver=3.34.1
 pkgrel=1
 pkgdesc='A task runner written in Go'
 arch=('amd64')
@@ -10,7 +10,7 @@ license=('MIT')
 depends=('libc6-dev')
 # makedepends=('golang-go')
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/go-task/task/archive/refs/tags/v${pkgver}.tar.gz")
-b2sums=('bcc2364abdb85d4c75732a76c317830640bc47aa46cce420d5c3be8087f1db049b7de282f5227b3916936970b3bad1b373a6286ae292ad88a857ab4bfe5d90be')
+b2sums=('5a21aa91ea91b1725e7b025129f4fb87635dd5719ecb9f90d5bdc98713664cc479a5ecfa1e7f3d934f1a6450a0b28adfbe912f223d827fd3210454344be5be51')
 
 prepare() {
   cd "$srcdir/$pkgname-$pkgver"
